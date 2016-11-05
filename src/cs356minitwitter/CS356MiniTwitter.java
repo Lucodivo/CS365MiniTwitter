@@ -6,6 +6,7 @@
 package cs356minitwitter;
 
 import cs356minitwitter.MiniTwitterUI.AdminWindow;
+import cs356minitwitter.twitterUser.TwitterUser;
 
 /**
  *
@@ -18,15 +19,24 @@ public class CS356MiniTwitter {
      */
     public static void main(String[] args) {
         AdminWindow adminWindow = AdminWindow.getAdminWindow();
+        
         adminWindow.addGroupNode("Bands", "root");
+        
         adminWindow.addGroupNode("Crystal Castles", "Bands");
+        TwitterUser ethan = new TwitterUser("Ethan");
+        TwitterUser edith = new TwitterUser("Edith");
+        TwitterUser notAlice = new TwitterUser("Not Alice");
+        adminWindow.addLeafNode(ethan, "Crystal Castles");
+        adminWindow.addLeafNode(edith, "Crystal Castles");
+        adminWindow.addLeafNode(notAlice, "Crystal Castles");
+        
         adminWindow.addGroupNode("Future Islands", "Bands");
-        adminWindow.addLeafNode("Samuel", "Future Islands");
-        adminWindow.addLeafNode("Gerrit", "Future Islands");
-        adminWindow.addLeafNode("William", "Future Islands");
-        adminWindow.addLeafNode("Ethan", "Crystal Castles");
-        adminWindow.addLeafNode("Edith", "Crystal Castles");
-        adminWindow.addLeafNode("Not Alice", "Crystal Castles");
+        TwitterUser samuel = new TwitterUser("Samuel");
+        TwitterUser gerrit = new TwitterUser("Gerrit");
+        TwitterUser william = new TwitterUser("William");
+        adminWindow.addLeafNode(samuel, "Future Islands");
+        adminWindow.addLeafNode(gerrit, "Future Islands");
+        adminWindow.addLeafNode(william, "Future Islands");
     }
     
 }

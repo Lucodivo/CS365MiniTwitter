@@ -85,42 +85,43 @@ public class AdminWindow extends AdminUI {
         }
     }
     
-    public void addGroupNode(String newGroupNodeID, String groupNodeID) {
-        addNode(newGroupNodeID, true, groupNodeID);
+    public void addGroupNode(Object newGroupNodeObject, String groupNodeID) {
+        addNode(newGroupNodeObject, true, groupNodeID);
     }
     
-    public void addLeafNode(String newLeafNodeID, String groupNodeID) {
-        addNode(newLeafNodeID, false, groupNodeID);
+    public void addLeafNode(Object newLeafNodeObject, String groupNodeID) {
+        addNode(newLeafNodeObject, false, groupNodeID);
     }
     
-    private void addNode(String newNodeID, boolean isGroup, String groupNodeID) {
+    private void addNode(Object newNodeObject, boolean isGroup, String groupNodeID) {
         DefaultMutableTreeNode groupNode = nodes.get(groupNodeID);
-        addNodeToGroupNode(newNodeID, isGroup, groupNode);
+        addNodeToGroupNode(newNodeObject, isGroup, groupNode);
     }
     
-    private void addLeafToSelectedNode(String newLeafNodeID) {
-        addNodeToSelectedNode(newLeafNodeID, false);
+    private void addLeafToSelectedNode(Object newLeafNodeObject) {
+        addNodeToSelectedNode(newLeafNodeObject, false);
     }
     
-    private void addGroupToSelectedNode(String newGroupNodeID) {
-        addNodeToSelectedNode(newGroupNodeID, true);
+    private void addGroupToSelectedNode(Object newGroupNodeObject) {
+        addNodeToSelectedNode(newGroupNodeObject, true);
     }
     
-    private void addNodeToSelectedNode(String newNodeID, boolean isGroup){
+    private void addNodeToSelectedNode(Object newNodeObject, boolean isGroup){
         DefaultMutableTreeNode selectedGroupNode = 
                 (DefaultMutableTreeNode) this.userGroupTreePane.getLastSelectedPathComponent();
-        addNodeToGroupNode(newNodeID, isGroup, selectedGroupNode);
+        addNodeToGroupNode(newNodeObject, isGroup, selectedGroupNode);
     }
     
-    private void addNodeToGroupNode(String newNodeID, boolean isGroup, DefaultMutableTreeNode groupNode){
+    private void addNodeToGroupNode(Object newNodeObject, boolean isGroup, DefaultMutableTreeNode groupNode){
         if(groupNode == null){
             groupNode = (DefaultMutableTreeNode) this.userGroupTreePane.getModel().getRoot();
         }
-        if(groupNode.getAllowsChildren() && !newNodeID.isEmpty()){
-            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newNodeID);
+        if(groupNode.getAllowsChildren() && !newNodeObject.toString().isEmpty()){
+            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newNodeObject);
             newNode.setAllowsChildren(isGroup);
             groupNode.add(newNode);
-            nodes.put(newNodeID, newNode);
+            nodes.put(newNodeObject.toString(), newNode);
+            // newNode.getUserObject();
             
             // updating the tree. Calling updateUI alone may cause NullPointerException.
             SwingUtilities.invokeLater(new Runnable() {
