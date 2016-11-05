@@ -17,8 +17,10 @@ public class AdminUI extends javax.swing.JFrame {
     /**
      * Creates new form AdminUI
      */
-    private AdminUI() {
+    protected AdminUI() {
         initComponents();
+        
+        
     }
 
     /**
@@ -30,81 +32,57 @@ public class AdminUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        openUserViewButton = new javax.swing.JButton();
+        showPositivePercentageButton = new javax.swing.JButton();
+        showMessagesTotalButton = new javax.swing.JButton();
+        showUserTotalButton = new javax.swing.JButton();
+        showGroupTotalButton = new javax.swing.JButton();
+        addUserButton = new javax.swing.JButton();
+        addGroupButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        userIDTextArea = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        groupIDTextArea = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTree2 = new javax.swing.JTree();
-
-        jScrollPane4.setViewportView(jTree1);
+        userGroupTreePane = new javax.swing.JTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Open User View");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpenUserViewPressed(evt);
-            }
-        });
+        openUserViewButton.setText("Open User View");
 
-        jButton2.setText("Show Positive Percentage");
+        showPositivePercentageButton.setText("Show Positive Percentage");
 
-        jButton3.setText("Show Messages Total");
+        showMessagesTotalButton.setText("Show Messages Total");
 
-        jButton4.setText("Show User Total");
+        showUserTotalButton.setText("Show User Total");
 
-        jButton5.setText("Show Group Total");
+        showGroupTotalButton.setText("Show Group Total");
 
-        jButton7.setText("Add User");
+        addUserButton.setText("Add User");
 
-        jButton9.setText("Add Group");
+        addGroupButton.setText("Add Group");
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-        jTextArea1.getAccessibleContext().setAccessibleName("UserIDTextArea");
+        userIDTextArea.setColumns(20);
+        userIDTextArea.setRows(5);
+        jScrollPane2.setViewportView(userIDTextArea);
+        userIDTextArea.getAccessibleContext().setAccessibleName("UserIDTextArea");
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
-        jTextArea2.getAccessibleContext().setAccessibleName("GroupIDTextArea");
+        groupIDTextArea.setColumns(20);
+        groupIDTextArea.setRows(5);
+        jScrollPane3.setViewportView(groupIDTextArea);
+        groupIDTextArea.getAccessibleContext().setAccessibleName("GroupIDTextArea");
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Bands");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Crystal Castles");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Ethan");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Edith");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Not Alice");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Future Islands");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Samuel");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Gerrit");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("William");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        jTree2.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane5.setViewportView(jTree2);
-        jTree2.getAccessibleContext().setAccessibleName("UserGroupTreePane");
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        userGroupTreePane.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        userGroupTreePane.setToolTipText("");
+        jScrollPane5.setViewportView(userGroupTreePane);
+        userGroupTreePane.getAccessibleContext().setAccessibleName("UserGroupTreePane");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,23 +93,23 @@ public class AdminUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(openUserViewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                            .addComponent(showUserTotalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(showMessagesTotalButton, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(showPositivePercentageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(showGroupTotalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addGroupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,43 +121,39 @@ public class AdminUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(addGroupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(37, 37, 37)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(openUserViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(showUserTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(showGroupTotalButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))))
+                            .addComponent(showPositivePercentageButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(showMessagesTotalButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("openUserViewButton");
-        jButton2.getAccessibleContext().setAccessibleName("ShowPositivePercentageButton");
-        jButton3.getAccessibleContext().setAccessibleName("ShowMessagesTotalButton");
-        jButton4.getAccessibleContext().setAccessibleName("ShowUserTotalButton");
-        jButton5.getAccessibleContext().setAccessibleName("ShowGroupTotalButton");
-        jButton5.getAccessibleContext().setAccessibleDescription("");
-        jButton7.getAccessibleContext().setAccessibleName("AddUserButton");
-        jButton9.getAccessibleContext().setAccessibleName("AddGroupButton");
+        openUserViewButton.getAccessibleContext().setAccessibleName("openUserViewButton");
+        showPositivePercentageButton.getAccessibleContext().setAccessibleName("ShowPositivePercentageButton");
+        showMessagesTotalButton.getAccessibleContext().setAccessibleName("ShowMessagesTotalButton");
+        showUserTotalButton.getAccessibleContext().setAccessibleName("ShowUserTotalButton");
+        showGroupTotalButton.getAccessibleContext().setAccessibleName("ShowGroupTotalButton");
+        showGroupTotalButton.getAccessibleContext().setAccessibleDescription("");
+        addUserButton.getAccessibleContext().setAccessibleName("AddUserButton");
+        addGroupButton.getAccessibleContext().setAccessibleName("AddGroupButton");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void OpenUserViewPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenUserViewPressed
-        UserUI uUI = UserUI.getUserUI();
-    }//GEN-LAST:event_OpenUserViewPressed
-
-    public static AdminUI getAdminUI(){
+    
+    protected static void setNimbusLookAndFeel() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -202,32 +176,21 @@ public class AdminUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AdminUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        if(aUI == null){
-            aUI = new AdminUI();
-            aUI.setTitle("Mini Twitter Admin");
-            aUI.setVisible(true);
-        }
-        
-        return aUI;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
+    protected javax.swing.JButton addGroupButton;
+    protected javax.swing.JButton addUserButton;
+    protected javax.swing.JTextArea groupIDTextArea;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTree jTree1;
-    private javax.swing.JTree jTree2;
+    protected javax.swing.JButton openUserViewButton;
+    protected javax.swing.JButton showGroupTotalButton;
+    protected javax.swing.JButton showMessagesTotalButton;
+    protected javax.swing.JButton showPositivePercentageButton;
+    protected javax.swing.JButton showUserTotalButton;
+    protected javax.swing.JTree userGroupTreePane;
+    protected javax.swing.JTextArea userIDTextArea;
     // End of variables declaration//GEN-END:variables
 }

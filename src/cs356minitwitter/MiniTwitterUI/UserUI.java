@@ -15,7 +15,7 @@ public class UserUI extends javax.swing.JFrame {
     /**
      * Creates new form UserUI
      */
-    private UserUI() {
+    protected UserUI() {
         initComponents();
     }
 
@@ -29,58 +29,46 @@ public class UserUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        followUserIDTextArea = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tweetMessageTextArea = new javax.swing.JTextArea();
+        postTweetButton = new javax.swing.JButton();
+        followUserButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        newsFeedListView = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        currentFollowingListView = new javax.swing.JList<>();
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-        jTextArea1.getAccessibleContext().setAccessibleName("UserIDTextArea");
+        followUserIDTextArea.setColumns(20);
+        followUserIDTextArea.setRows(5);
+        jScrollPane2.setViewportView(followUserIDTextArea);
+        followUserIDTextArea.getAccessibleContext().setAccessibleName("UserIDTextArea");
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
-        jTextArea2.getAccessibleContext().setAccessibleName("TweetMessageTextArea");
+        tweetMessageTextArea.setColumns(20);
+        tweetMessageTextArea.setRows(5);
+        jScrollPane3.setViewportView(tweetMessageTextArea);
+        tweetMessageTextArea.getAccessibleContext().setAccessibleName("TweetMessageTextArea");
 
-        jButton1.setText("Post Tweet");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        postTweetButton.setText("Post Tweet");
+        postTweetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                postTweetButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Follow User");
+        followUserButton.setText("Follow User");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-        jList1.getAccessibleContext().setAccessibleName("NewsFeedListView");
+        jScrollPane1.setViewportView(newsFeedListView);
+        newsFeedListView.getAccessibleContext().setAccessibleName("NewsFeedListView");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList2);
-        jList2.getAccessibleContext().setAccessibleName("CurrentFollowingListView");
+        jScrollPane4.setViewportView(currentFollowingListView);
+        currentFollowingListView.getAccessibleContext().setAccessibleName("CurrentFollowingListView");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,8 +83,8 @@ public class UserUI extends javax.swing.JFrame {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
+                            .addComponent(postTweetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(followUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane4))
                 .addContainerGap())
@@ -107,29 +95,29 @@ public class UserUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(followUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(postTweetButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("PostTweetButton");
-        jButton2.getAccessibleContext().setAccessibleName("FollowUserButton");
+        postTweetButton.getAccessibleContext().setAccessibleName("PostTweetButton");
+        followUserButton.getAccessibleContext().setAccessibleName("FollowUserButton");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void postTweetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postTweetButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-                                
-    public static UserUI getUserUI(){
+    }//GEN-LAST:event_postTweetButtonActionPerformed
+     
+    protected static void setNimbusLookAndFeel() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -152,25 +140,18 @@ public class UserUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AdminUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        UserUI uUI = new UserUI();
-        uUI.setTitle("Twitter User");
-        uUI.setVisible(true);
-        
-        return uUI;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    protected javax.swing.JList<String> currentFollowingListView;
+    protected javax.swing.JButton followUserButton;
+    protected javax.swing.JTextArea followUserIDTextArea;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    protected javax.swing.JList<String> newsFeedListView;
+    protected javax.swing.JButton postTweetButton;
+    protected javax.swing.JTextArea tweetMessageTextArea;
     // End of variables declaration//GEN-END:variables
 }

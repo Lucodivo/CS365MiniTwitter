@@ -5,7 +5,7 @@
  */
 package cs356minitwitter;
 
-import cs356minitwitter.MiniTwitterUI.AdminUI;
+import cs356minitwitter.MiniTwitterUI.AdminWindow;
 
 /**
  *
@@ -17,7 +17,16 @@ public class CS356MiniTwitter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AdminUI aui = AdminUI.getAdminUI();
+        AdminWindow adminWindow = AdminWindow.getAdminWindow();
+        adminWindow.addGroupNode("Bands", "root");
+        adminWindow.addGroupNode("Crystal Castles", "Bands");
+        adminWindow.addGroupNode("Future Islands", "Bands");
+        adminWindow.addLeafNode("Samuel", "Future Islands");
+        adminWindow.addLeafNode("Gerrit", "Future Islands");
+        adminWindow.addLeafNode("William", "Future Islands");
+        adminWindow.addLeafNode("Ethan", "Crystal Castles");
+        adminWindow.addLeafNode("Edith", "Crystal Castles");
+        adminWindow.addLeafNode("Not Alice", "Crystal Castles");
     }
     
 }
