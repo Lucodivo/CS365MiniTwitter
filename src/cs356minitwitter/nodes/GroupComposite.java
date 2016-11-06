@@ -40,12 +40,6 @@ public class GroupComposite extends UserGroupComponent {
             return null;
         }
     }
-
-    @Override
-    public String toString() {
-        return ("-" + this.componentID + "-");
-    }
-
     @Override
     public List<UserGroupComponent> getChildren() {
         return this.components;

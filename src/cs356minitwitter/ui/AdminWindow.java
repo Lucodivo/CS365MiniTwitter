@@ -5,6 +5,9 @@
  */
 package cs356minitwitter.ui;
 
+import cs356minitwitter.nodes.GroupComposite;
+import cs356minitwitter.nodes.UserGroupComponent;
+import cs356minitwitter.nodes.UserLeaf;
 import cs356minitwitter.user.TwitterUser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,15 +25,15 @@ public class AdminWindow extends AdminUI {
     
     private static AdminWindow adminWindow;
     private HashMap<String, TwitterUser> twitterUsers;
-    private DefaultMutableTreeNode root;
-    private HashMap<String, DefaultMutableTreeNode> nodes;
+    private UserGroupComponent root;
+    private HashMap<String, UserGroupComponent> nodes;
     
     private AdminWindow() {
         super();
         
         twitterUsers = new HashMap<String, TwitterUser>();
-        nodes = new HashMap<String, DefaultMutableTreeNode>();
-        root = (DefaultMutableTreeNode) this.userGroupTreePane.getModel().getRoot();
+        nodes = new HashMap<String, UserGroupComponent>();
+        root = (UserGroupComponent) this.userGroupTreePane.getModel().getRoot();
         nodes.put("root", root);
         this.initializeViews();
     }
@@ -73,9 +76,9 @@ public class AdminWindow extends AdminUI {
     }
     
     private void openUserView() {
-        DefaultMutableTreeNode node = 
-                (DefaultMutableTreeNode) this.userGroupTreePane.getLastSelectedPathComponent();
-        if(node != null && !node.getAllowsChildren()){
+        UserGroupComponent node = 
+                (UserGroupComponent) this.userGroupTreePane.getLastSelectedPathComponent();
+        if(node != null && (node instanceof UserLeaf)){
             String userName = node.toString();
             if(twitterUsers.containsKey(userName)){
                 new UserWindow(twitterUsers.get(userName));
@@ -85,43 +88,51 @@ public class AdminWindow extends AdminUI {
         }
     }
     
-    public void addGroupNode(Object newGroupNodeObject, String groupNodeID) {
+    
+    
+    public void addGroupNode(UserGroupComponent newGroupNodeObject, String groupNodeID) {
         addNode(newGroupNodeObject, true, groupNodeID);
     }
     
-    public void addLeafNode(Object newLeafNodeObject, String groupNodeID) {
+    public void addLeafNode(UserGroupComponent newLeafNodeObject, String groupNodeID) {
         addNode(newLeafNodeObject, false, groupNodeID);
     }
     
-    private void addNode(Object newNodeObject, boolean isGroup, String groupNodeID) {
-        DefaultMutableTreeNode groupNode = nodes.get(groupNodeID);
+    private void addNode(UserGroupComponent newNodeObject, boolean isGroup, String groupNodeID) {
+        UserGroupComponent groupNode = nodes.get(groupNodeID);
         addNodeToGroupNode(newNodeObject, isGroup, groupNode);
     }
     
-    private void addLeafToSelectedNode(Object newLeafNodeObject) {
+    private void addLeafToSelectedNode(String newLeafNodeString) {
+        addNodeToSelectedNode(new UserLeaf(newLeafNodeString), false);
+    }
+    
+    private void addGroupToSelectedNode(String newGroupNodeString) {
+        addNodeToSelectedNode(new GroupComposite(newGroupNodeString), true);
+    }
+    
+    private void addLeafToSelectedNode(UserGroupComponent newLeafNodeObject) {
         addNodeToSelectedNode(newLeafNodeObject, false);
     }
     
-    private void addGroupToSelectedNode(Object newGroupNodeObject) {
+    private void addGroupToSelectedNode(UserGroupComponent newGroupNodeObject) {
         addNodeToSelectedNode(newGroupNodeObject, true);
     }
     
-    private void addNodeToSelectedNode(Object newNodeObject, boolean isGroup){
-        DefaultMutableTreeNode selectedGroupNode = 
-                (DefaultMutableTreeNode) this.userGroupTreePane.getLastSelectedPathComponent();
+    private void addNodeToSelectedNode(UserGroupComponent newNodeObject, boolean isGroup){
+        UserGroupComponent selectedGroupNode = 
+                (UserGroupComponent) this.userGroupTreePane.getLastSelectedPathComponent();
         addNodeToGroupNode(newNodeObject, isGroup, selectedGroupNode);
     }
     
-    private void addNodeToGroupNode(Object newNodeObject, boolean isGroup, DefaultMutableTreeNode groupNode){
+    private void addNodeToGroupNode(UserGroupComponent newNodeObject, boolean isGroup, UserGroupComponent groupNode){
         if(groupNode == null){
-            groupNode = (DefaultMutableTreeNode) this.userGroupTreePane.getModel().getRoot();
+            groupNode = root;
         }
-        if(groupNode.getAllowsChildren() && !newNodeObject.toString().isEmpty()){
-            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newNodeObject);
-            newNode.setAllowsChildren(isGroup);
-            groupNode.add(newNode);
+        if(groupNode instanceof GroupComposite && newNodeObject != null){
+            groupNode.add(newNodeObject);
             String userName = newNodeObject.toString();
-            nodes.put(userName, newNode);
+            nodes.put(userName, newNodeObject);
             twitterUsers.put(userName, new TwitterUser(userName));
             // newNode.getUserObject();
             this.updateGroupTreePaneUI();

@@ -33,11 +33,6 @@ public class UserLeaf extends UserGroupComponent {
     }
 
     @Override
-    public String toString() {
-        return this.componentID;
-    }
-
-    @Override
     public List<UserGroupComponent> getChildren() {
         return null;
     }

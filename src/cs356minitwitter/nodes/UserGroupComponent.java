@@ -22,9 +22,11 @@ public abstract class UserGroupComponent {
     public String getID(){
         return componentID;
     }
-    
+
     @Override
-    public abstract String toString();
+    public String toString() {
+        return (this.componentID);
+    }
     
     public abstract void add(UserGroupComponent c);
     public abstract void remove(UserGroupComponent c);

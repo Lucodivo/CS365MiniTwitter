@@ -5,6 +5,8 @@
  */
 package cs356minitwitter;
 
+import cs356minitwitter.nodes.GroupComposite;
+import cs356minitwitter.nodes.UserLeaf;
 import cs356minitwitter.ui.AdminWindow;
 import cs356minitwitter.user.TwitterUser;
 
@@ -20,23 +22,29 @@ public class CS356MiniTwitter {
     public static void main(String[] args) {
         AdminWindow adminWindow = AdminWindow.getAdminWindow();
         
-        adminWindow.addGroupNode("Bands", "root");
+        GroupComposite bands = new GroupComposite("Bands");
+        adminWindow.addGroupNode(bands, "root");
         
-        adminWindow.addGroupNode("Crystal Castles", "Bands");
-        TwitterUser ethan = new TwitterUser("Ethan");
-        TwitterUser edith = new TwitterUser("Edith");
-        TwitterUser notAlice = new TwitterUser("Not Alice");
+        GroupComposite crystalCastles = new GroupComposite("Crystal Castles");
+        adminWindow.addGroupNode(crystalCastles, "Bands");
+        UserLeaf ethan = new UserLeaf("Ethan");
+        UserLeaf edith = new UserLeaf("Edith");
+        UserLeaf notAlice = new UserLeaf("Not Alice");
         adminWindow.addLeafNode(ethan, "Crystal Castles");
         adminWindow.addLeafNode(edith, "Crystal Castles");
         adminWindow.addLeafNode(notAlice, "Crystal Castles");
         
-        adminWindow.addGroupNode("Future Islands", "Bands");
-        TwitterUser samuel = new TwitterUser("Samuel");
-        TwitterUser gerrit = new TwitterUser("Gerrit");
-        TwitterUser william = new TwitterUser("William");
+        GroupComposite futureIslands = new GroupComposite("Future Islands");
+        adminWindow.addGroupNode(futureIslands, "Bands");
+        UserLeaf samuel = new UserLeaf("Samuel");
+        UserLeaf gerrit = new UserLeaf("Gerrit");
+        UserLeaf william = new UserLeaf("William");
         adminWindow.addLeafNode(samuel, "Future Islands");
         adminWindow.addLeafNode(gerrit, "Future Islands");
         adminWindow.addLeafNode(william, "Future Islands");
+        
+        GroupComposite noMembers = new GroupComposite("No Members");
+        adminWindow.addGroupNode(noMembers, "Bands");
     }
     
 }
