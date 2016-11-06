@@ -1,7 +1,8 @@
 package cs356minitwitter.ui;
 
 import cs356minitwitter.nodes.GroupComposite;
-import cs356minitwitter.nodes.UserGroupTreeModel;
+import cs356minitwitter.nodes.RootComposite;
+import cs356minitwitter.util.UserGroupTreeModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,8 +23,6 @@ public class AdminUI extends javax.swing.JFrame {
      */
     protected AdminUI() {
         initComponents();
-        
-        
     }
 
     /**
@@ -81,7 +80,7 @@ public class AdminUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(groupIDTextArea);
         groupIDTextArea.getAccessibleContext().setAccessibleName("GroupIDTextArea");
 
-        userGroupTreePane.setModel(new UserGroupTreeModel(new GroupComposite("root")));
+        userGroupTreePane.setModel(new UserGroupTreeModel(new RootComposite("root")));
         userGroupTreePane.setToolTipText("");
         jScrollPane5.setViewportView(userGroupTreePane);
         userGroupTreePane.getAccessibleContext().setAccessibleName("UserGroupTreePane");

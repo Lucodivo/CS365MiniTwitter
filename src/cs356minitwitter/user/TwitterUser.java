@@ -6,10 +6,7 @@
 package cs356minitwitter.user;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashSet;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeNode;
 
 /**
  *

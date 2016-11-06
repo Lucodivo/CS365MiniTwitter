@@ -8,7 +8,6 @@ package cs356minitwitter;
 import cs356minitwitter.nodes.GroupComposite;
 import cs356minitwitter.nodes.UserLeaf;
 import cs356minitwitter.ui.AdminWindow;
-import cs356minitwitter.user.TwitterUser;
 
 /**
  *
@@ -28,6 +27,7 @@ public class CS356MiniTwitter {
         GroupComposite crystalCastles = new GroupComposite("Crystal Castles");
         adminWindow.addGroupNode(crystalCastles, "Bands");
         UserLeaf ethan = new UserLeaf("Ethan");
+        adminWindow.getTwitterUser("Ethan");
         UserLeaf edith = new UserLeaf("Edith");
         UserLeaf notAlice = new UserLeaf("Not Alice");
         adminWindow.addLeafNode(ethan, "Crystal Castles");

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.nodes;
+package cs356minitwitter.util;
 
+import cs356minitwitter.nodes.GroupComposite;
+import cs356minitwitter.nodes.RootComposite;
+import cs356minitwitter.nodes.UserGroupComponent;
+import cs356minitwitter.nodes.UserLeaf;
 import java.util.List;
 import javax.swing.event.TreeModelListener;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
@@ -17,9 +20,9 @@ import javax.swing.tree.TreePath;
  */
 public class UserGroupTreeModel implements TreeModel {
     
-    UserGroupComponent root;
+    RootComposite root;
     
-    public UserGroupTreeModel(UserGroupComponent root){
+    public UserGroupTreeModel(RootComposite root){
         this.root = root;
     }
 
@@ -57,7 +60,7 @@ public class UserGroupTreeModel implements TreeModel {
 
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        //
+        // No current need for implementation
     }
 
     @Override
@@ -78,11 +81,11 @@ public class UserGroupTreeModel implements TreeModel {
 
     @Override
     public void addTreeModelListener(TreeModelListener l) {
-        //
+        // No current need for implementation
     }
 
     @Override
     public void removeTreeModelListener(TreeModelListener l) {
-        //
+        // No current need for implementation
     }
 }

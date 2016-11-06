@@ -5,17 +5,16 @@
  */
 package cs356minitwitter.ui;
 
+import analysis.CountUsersVisitor;
 import cs356minitwitter.nodes.GroupComposite;
+import cs356minitwitter.nodes.RootComposite;
 import cs356minitwitter.nodes.UserGroupComponent;
 import cs356minitwitter.nodes.UserLeaf;
 import cs356minitwitter.user.TwitterUser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import javax.swing.JButton;
 import javax.swing.SwingUtilities;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -28,19 +27,21 @@ public class AdminWindow extends AdminUI {
     private UserGroupComponent root;
     private HashMap<String, UserGroupComponent> nodes;
     
+    private CountUsersVisitor countUsersVisitor;
+    
     private AdminWindow() {
         super();
         
+        countUsersVisitor = new CountUsersVisitor();
+        
         twitterUsers = new HashMap<String, TwitterUser>();
+        root = (RootComposite) this.userGroupTreePane.getModel().getRoot();
         nodes = new HashMap<String, UserGroupComponent>();
-        root = (UserGroupComponent) this.userGroupTreePane.getModel().getRoot();
         nodes.put("root", root);
         this.initializeViews();
     }
     
     public static AdminWindow getAdminWindow() {
-        setNimbusLookAndFeel();
-        
         /* Create and display the form */
         if(adminWindow == null){
             adminWindow = new AdminWindow();
@@ -50,8 +51,15 @@ public class AdminWindow extends AdminUI {
     }
     
     private void initializeViews(){
-        this.setTitle("Mini Twitter Admin");
-        this.setVisible(true);
+        setNimbusLookAndFeel();
+        
+        // setting window features and visibility
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                setTitle("Mini Twitter Admin");
+                setVisible(true);
+            }
+        });
         
         this.openUserViewButton.addActionListener(new ActionListener() {  
             @Override      
@@ -73,6 +81,34 @@ public class AdminWindow extends AdminUI {
                 addGroupToSelectedNode(groupIDTextArea.getText());
             }
         });
+        
+        this.showUserTotalButton.addActionListener(new ActionListener() {  
+            @Override      
+            public void actionPerformed(ActionEvent e) {
+                ((RootComposite)root).accept(countUsersVisitor);
+            }
+        });
+        
+        this.showGroupTotalButton.addActionListener(new ActionListener() {  
+            @Override      
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
+        this.showMessagesTotalButton.addActionListener(new ActionListener() {  
+            @Override      
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
+        this.showPositivePercentageButton.addActionListener(new ActionListener() {  
+            @Override      
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
     }
     
     private void openUserView() {
@@ -91,50 +127,53 @@ public class AdminWindow extends AdminUI {
     
     
     public void addGroupNode(UserGroupComponent newGroupNodeObject, String groupNodeID) {
-        addNode(newGroupNodeObject, true, groupNodeID);
+        addNode(newGroupNodeObject, groupNodeID);
     }
     
     public void addLeafNode(UserGroupComponent newLeafNodeObject, String groupNodeID) {
-        addNode(newLeafNodeObject, false, groupNodeID);
+        addNode(newLeafNodeObject, groupNodeID);
     }
     
-    private void addNode(UserGroupComponent newNodeObject, boolean isGroup, String groupNodeID) {
+    private void addNode(UserGroupComponent newNodeObject, String groupNodeID) {
         UserGroupComponent groupNode = nodes.get(groupNodeID);
-        addNodeToGroupNode(newNodeObject, isGroup, groupNode);
+        addNodeToGroupNode(newNodeObject, groupNode);
     }
     
     private void addLeafToSelectedNode(String newLeafNodeString) {
-        addNodeToSelectedNode(new UserLeaf(newLeafNodeString), false);
+        addNodeToSelectedNode(new UserLeaf(newLeafNodeString));
     }
     
     private void addGroupToSelectedNode(String newGroupNodeString) {
-        addNodeToSelectedNode(new GroupComposite(newGroupNodeString), true);
+        addNodeToSelectedNode(new GroupComposite(newGroupNodeString));
     }
     
     private void addLeafToSelectedNode(UserGroupComponent newLeafNodeObject) {
-        addNodeToSelectedNode(newLeafNodeObject, false);
+        addNodeToSelectedNode(newLeafNodeObject);
     }
     
     private void addGroupToSelectedNode(UserGroupComponent newGroupNodeObject) {
-        addNodeToSelectedNode(newGroupNodeObject, true);
+        addNodeToSelectedNode(newGroupNodeObject);
     }
     
-    private void addNodeToSelectedNode(UserGroupComponent newNodeObject, boolean isGroup){
+    private void addNodeToSelectedNode(UserGroupComponent newNodeObject){
         UserGroupComponent selectedGroupNode = 
                 (UserGroupComponent) this.userGroupTreePane.getLastSelectedPathComponent();
-        addNodeToGroupNode(newNodeObject, isGroup, selectedGroupNode);
+        addNodeToGroupNode(newNodeObject, selectedGroupNode);
     }
     
-    private void addNodeToGroupNode(UserGroupComponent newNodeObject, boolean isGroup, UserGroupComponent groupNode){
+    private void addNodeToGroupNode(UserGroupComponent newNodeObject, UserGroupComponent groupNode){
         if(groupNode == null){
             groupNode = root;
         }
-        if(groupNode instanceof GroupComposite && newNodeObject != null){
+        if(groupNode instanceof GroupComposite 
+                && newNodeObject != null 
+                && !nodes.containsKey(newNodeObject.toString())){
             groupNode.add(newNodeObject);
             String userName = newNodeObject.toString();
             nodes.put(userName, newNodeObject);
-            twitterUsers.put(userName, new TwitterUser(userName));
-            // newNode.getUserObject();
+            if(newNodeObject instanceof UserLeaf) {
+                twitterUsers.put(userName, new TwitterUser(userName));
+            }
             this.updateGroupTreePaneUI();
         }
     }
@@ -152,5 +191,13 @@ public class AdminWindow extends AdminUI {
     // getters
     public TwitterUser getTwitterUser(String userID) {
         return twitterUsers.get(userID);
+    }
+
+    public HashMap<String, TwitterUser> getTwitterUsers() {
+        return twitterUsers;
+    }
+
+    public UserGroupComponent getRoot() {
+        return root;
     }
 }
