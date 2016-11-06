@@ -5,6 +5,7 @@
  */
 package cs356minitwitter.nodes;
 
+import java.util.List;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -30,7 +31,7 @@ public class UserGroupTreeModel implements TreeModel {
     @Override
     public Object getChild(Object parent, int index) {
         if(parent instanceof GroupComposite){
-            return ((GroupComposite) parent).GetChild(index);
+            return ((GroupComposite) parent).getChild(index);
         } else {
             return null;
         }
@@ -38,7 +39,11 @@ public class UserGroupTreeModel implements TreeModel {
 
     @Override
     public int getChildCount(Object parent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(parent instanceof GroupComposite) {
+            return ((GroupComposite)parent).getChildren().size();
+        } else {
+            return 0;
+        }
     }
 
     @Override
@@ -52,22 +57,32 @@ public class UserGroupTreeModel implements TreeModel {
 
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
+        //
     }
 
     @Override
     public int getIndexOfChild(Object parent, Object child) {
         if(parent instanceof GroupComposite) {
-            return 0;
+            List<UserGroupComponent> components = ((GroupComposite)parent).getChildren();
+            if(components != null) {
+                for (int i = 0; i < components.size(); i++) {
+                    if(components.get(i) == child) {
+                        return i;
+                    }
+                }
+            }
         }
         
-        return 0;
+        return -1;
     }
 
     @Override
     public void addTreeModelListener(TreeModelListener l) {
+        //
     }
 
     @Override
     public void removeTreeModelListener(TreeModelListener l) {
+        //
     }
 }

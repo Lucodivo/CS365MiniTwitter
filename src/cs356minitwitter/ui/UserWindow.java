@@ -12,9 +12,7 @@ import cs356minitwitter.util.StringArrayListModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.AbstractListModel;
 import javax.swing.JList;
 import javax.swing.SwingUtilities;
 
@@ -65,14 +63,23 @@ public class UserWindow extends UserUI implements Observer {
                 postTweet();
             }
         });
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
     }
     
     private void followUser() {
         String followUserID = this.followUserIDTextArea.getText();
         if(!followUserID.isEmpty()){
             TwitterUser followUser = adminWindow.getTwitterUser(followUserID);
-            if (followUser != null && followUser != this.user) {
+            if (followUser != null && followUser != this.user 
+                    && !this.user.isFollowingUser(followUserID)) {
                 followUser.attach(this.user);
+                this.user.addFollowingUser(followUserID);
                 followedUsers.addString(followUserID);
                 updateJListUI(this.currentFollowingListView);
             }
@@ -103,5 +110,10 @@ public class UserWindow extends UserUI implements Observer {
     @Override
     public void update(Subject subject){
         updateJListUI(this.newsFeedListView);
+    }                   
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
+        // TODO add your handling code here:
+        this.user.setUserWindow(null);
     }
 }

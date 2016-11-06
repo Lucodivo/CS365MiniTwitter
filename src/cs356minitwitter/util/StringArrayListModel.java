@@ -6,6 +6,7 @@
 package cs356minitwitter.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.AbstractListModel;
 
 /**
@@ -18,6 +19,10 @@ public class StringArrayListModel extends AbstractListModel<String> {
     
     public StringArrayListModel() {
         strings = new ArrayList<String>();
+    }
+    
+    public StringArrayListModel(HashSet<String> strings) {
+        this(new ArrayList<String>(strings));
     }
     
     public StringArrayListModel(ArrayList<String> strings) {

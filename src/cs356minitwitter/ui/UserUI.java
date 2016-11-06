@@ -39,8 +39,6 @@ public class UserUI extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         currentFollowingListView = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
@@ -58,11 +56,6 @@ public class UserUI extends javax.swing.JFrame {
         tweetMessageTextArea.getAccessibleContext().setAccessibleName("TweetMessageTextArea");
 
         postTweetButton.setText("Post Tweet");
-        postTweetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postTweetButtonActionPerformed(evt);
-            }
-        });
 
         followUserButton.setText("Follow User");
 
@@ -114,10 +107,6 @@ public class UserUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void postTweetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postTweetButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_postTweetButtonActionPerformed
      
     protected static void setNimbusLookAndFeel() {
         /* Set the Nimbus look and feel */

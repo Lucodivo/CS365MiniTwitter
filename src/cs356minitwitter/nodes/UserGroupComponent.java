@@ -5,6 +5,8 @@
  */
 package cs356minitwitter.nodes;
 
+import java.util.List;
+
 /**
  *
  * @author Connor
@@ -24,7 +26,8 @@ public abstract class UserGroupComponent {
     @Override
     public abstract String toString();
     
-    public abstract void Add(UserGroupComponent c);
-    public abstract void Remove(UserGroupComponent c);
-    public abstract UserGroupComponent GetChild(int i);
+    public abstract void add(UserGroupComponent c);
+    public abstract void remove(UserGroupComponent c);
+    public abstract UserGroupComponent getChild(int i);
+    public abstract List<UserGroupComponent> getChildren();
 }

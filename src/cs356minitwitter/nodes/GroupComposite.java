@@ -23,17 +23,17 @@ public class GroupComposite extends UserGroupComponent {
     }
 
     @Override
-    public void Add(UserGroupComponent c) {
+    public void add(UserGroupComponent c) {
         components.add(c);
     }
 
     @Override
-    public void Remove(UserGroupComponent c) {
+    public void remove(UserGroupComponent c) {
         components.remove(c);
     }
 
     @Override
-    public UserGroupComponent GetChild(int i) {
+    public UserGroupComponent getChild(int i) {
         if(components.size() > i){
             return components.get(i);
         } else {
@@ -44,5 +44,10 @@ public class GroupComposite extends UserGroupComponent {
     @Override
     public String toString() {
         return ("-" + this.componentID + "-");
+    }
+
+    @Override
+    public List<UserGroupComponent> getChildren() {
+        return this.components;
     }
 }

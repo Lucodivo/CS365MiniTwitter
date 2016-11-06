@@ -5,6 +5,8 @@
  */
 package cs356minitwitter.nodes;
 
+import java.util.List;
+
 /**
  *
  * @author Connor
@@ -16,22 +18,27 @@ public class UserLeaf extends UserGroupComponent {
     }
 
     @Override
-    public void Add(UserGroupComponent c) {
+    public void add(UserGroupComponent c) {
         //
     }
 
     @Override
-    public void Remove(UserGroupComponent c) {
+    public void remove(UserGroupComponent c) {
         //
     }
 
     @Override
-    public UserGroupComponent GetChild(int i) {
+    public UserGroupComponent getChild(int i) {
         return null;
     }
 
     @Override
     public String toString() {
         return this.componentID;
+    }
+
+    @Override
+    public List<UserGroupComponent> getChildren() {
+        return null;
     }
 }

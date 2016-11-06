@@ -7,6 +7,7 @@ package cs356minitwitter.user;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashSet;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
@@ -18,7 +19,7 @@ public class TwitterUser extends Subject implements Observer {
     
     private String userID;
     private ArrayList<String> tweets;
-    private ArrayList<String> followedUsers;
+    private HashSet<String> followedUsers;
     
     private Observer userWindow;
     
@@ -27,7 +28,7 @@ public class TwitterUser extends Subject implements Observer {
         
         this.userID = userID;
         tweets = new ArrayList<String>();
-        followedUsers = new ArrayList<String>();
+        followedUsers = new HashSet<String>();
     }
 
     @Override
@@ -54,6 +55,10 @@ public class TwitterUser extends Subject implements Observer {
         this.followedUsers.add(followingUserID);
     }
     
+    public boolean isFollowingUser(String followingUserID) {
+        return followedUsers.contains(followingUserID);
+    }
+    
     @Override
     public String toString(){
         return this.userID;
@@ -68,7 +73,7 @@ public class TwitterUser extends Subject implements Observer {
         return this.tweets;
     }
     
-    public ArrayList<String> getFollowedUsers() {
+    public HashSet<String> getFollowedUsers() {
         return this.followedUsers;
     }
     
