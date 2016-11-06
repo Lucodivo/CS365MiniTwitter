@@ -7,6 +7,7 @@ package cs356minitwitter.ui;
 
 import cs356minitwitter.user.Observer;
 import cs356minitwitter.user.Subject;
+import cs356minitwitter.user.Tweet;
 import cs356minitwitter.user.TwitterUser;
 import cs356minitwitter.util.StringArrayListModel;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,7 @@ public class UserWindow extends UserUI implements Observer {
     
     TwitterUser user;
     StringArrayListModel followedUsers;
-    StringArrayListModel tweets;
+    StringArrayListModel newsFeed;
     
     AdminWindow adminWindow;
     
@@ -34,7 +35,7 @@ public class UserWindow extends UserUI implements Observer {
         this.user = user;
         this.user.setUserWindow(this);
         followedUsers = new StringArrayListModel(this.user.getFollowedUsers());
-        tweets = new StringArrayListModel(this.user.getTweets());
+        newsFeed = new StringArrayListModel(this.user.getNewsFeed());
         adminWindow = AdminWindow.getAdminWindow();
         
         setNimbusLookAndFeel();
@@ -46,7 +47,7 @@ public class UserWindow extends UserUI implements Observer {
         this.setVisible(true);
         
         this.currentFollowingListView.setModel(followedUsers);
-        this.newsFeedListView.setModel(tweets);
+        this.newsFeedListView.setModel(newsFeed);
         updateJListUI(this.currentFollowingListView);
         updateJListUI(this.newsFeedListView);
         
@@ -87,12 +88,9 @@ public class UserWindow extends UserUI implements Observer {
     }
     
     private void postTweet() {
-        String newTweet = this.tweetMessageTextArea.getText();
-        if(!newTweet.isEmpty()){
-            Date date = new Date();
-            String ts = (new Timestamp(date.getTime())).toString();
-            ts = ts.substring(11, 19);
-            user.postTweet(ts + " | " + this.user.getUserID() + ": " + newTweet);
+        String newTweetString = this.tweetMessageTextArea.getText();
+        if(!newTweetString.isEmpty()){
+            user.postTweet(newTweetString);
             updateJListUI(this.newsFeedListView);
         }
     }

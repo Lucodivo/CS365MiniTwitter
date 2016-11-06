@@ -14,6 +14,7 @@ import cs356minitwitter.nodes.RootComposite;
 import cs356minitwitter.nodes.UserGroupComponent;
 import cs356minitwitter.nodes.UserLeaf;
 import cs356minitwitter.user.TwitterUser;
+import cs356minitwitter.util.TwitterUserHMap;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ import javax.swing.SwingUtilities;
 public class AdminWindow extends AdminUI {
     
     private static AdminWindow adminWindow;
-    private HashMap<String, TwitterUser> twitterUsers;
+    private TwitterUserHMap twitterUsers;
     private UserGroupComponent root;
     private HashMap<String, UserGroupComponent> nodes;
     
@@ -43,7 +44,7 @@ public class AdminWindow extends AdminUI {
         countTweetsVisitor = new CountTweetsVisitor();
         findPercentPositiveVisitor = new FindPercentPositiveVisitor();
         
-        twitterUsers = new HashMap<String, TwitterUser>();
+        twitterUsers = new TwitterUserHMap();
         root = (RootComposite) this.userGroupTreePane.getModel().getRoot();
         nodes = new HashMap<String, UserGroupComponent>();
         nodes.put("root", root);
@@ -108,14 +109,14 @@ public class AdminWindow extends AdminUI {
         this.showMessagesTotalButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                ((RootComposite)root).accept(countTweetsVisitor);
+                twitterUsers.accept(countTweetsVisitor);
             }
         });
         
         this.showPositivePercentageButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                ((RootComposite)root).accept(findPercentPositiveVisitor);
+                twitterUsers.accept(findPercentPositiveVisitor);
             }
         });
     }

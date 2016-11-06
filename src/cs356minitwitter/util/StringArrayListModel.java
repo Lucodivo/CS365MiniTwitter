@@ -5,6 +5,7 @@
  */
 package cs356minitwitter.util;
 
+import cs356minitwitter.user.Tweet;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.AbstractListModel;

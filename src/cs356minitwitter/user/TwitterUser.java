@@ -5,7 +5,9 @@
  */
 package cs356minitwitter.user;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
 /**
@@ -15,8 +17,9 @@ import java.util.HashSet;
 public class TwitterUser extends Subject implements Observer {
     
     private String userID;
-    private ArrayList<String> tweets;
+    private ArrayList<Tweet> tweets;
     private HashSet<String> followedUsers;
+    private ArrayList<String> newsFeed;
     
     private Observer userWindow;
     
@@ -24,27 +27,36 @@ public class TwitterUser extends Subject implements Observer {
         super();
         
         this.userID = userID;
-        tweets = new ArrayList<String>();
+        tweets = new ArrayList<Tweet>();
         followedUsers = new HashSet<String>();
+        newsFeed = new ArrayList<String>();
     }
 
     @Override
     public void update(Subject subject) {
         if(subject instanceof TwitterUser) {
-            String latestTweet = ((TwitterUser)subject).getLastTweet();
-            tweets.add(latestTweet);
+            this.addLatestTweetToNewsFeed((TwitterUser)subject);
             if(userWindow != null){
                 userWindow.update(this);
             }
         }
     }
     
-    public void postTweet(String tweet){
-        tweets.add(tweet);
+    public void postTweet(String tweetString){
+        tweets.add(new Tweet(tweetString));
+        this.addLatestTweetToNewsFeed(this);
         notifyObservers();
     }
     
-    public String getLastTweet(){
+    public void addLatestTweetToNewsFeed(TwitterUser twitterUser){
+        Tweet latestTweet = twitterUser.getLastTweet();
+        String ts = latestTweet.getTimeStamp().toString();
+        ts = ts.substring(11, 19);
+        this.newsFeed.add((ts + " | " + twitterUser.getUserID() 
+                    + ": " + latestTweet.getTweetString()));
+    }
+    
+    public Tweet getLastTweet(){
         return tweets.get(tweets.size() - 1);
     }
     
@@ -66,7 +78,7 @@ public class TwitterUser extends Subject implements Observer {
         return this.userID;
     }
     
-    public ArrayList<String> getTweets() {
+    public ArrayList<Tweet> getTweets() {
         return this.tweets;
     }
     
@@ -76,5 +88,9 @@ public class TwitterUser extends Subject implements Observer {
     
     public void setUserWindow(Observer userWindow){
         this.userWindow = userWindow;
+    }
+
+    public ArrayList<String> getNewsFeed() {
+        return newsFeed;
     }
 }

@@ -9,6 +9,6 @@ package analysis;
  *
  * @author Connor
  */
-public interface TwitterElement {
-    public void accept(Visitor v);
+public interface GroupElement {
+    public void accept(GroupVisitor v);
 }

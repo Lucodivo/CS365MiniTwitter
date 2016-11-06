@@ -15,14 +15,14 @@ import cs356minitwitter.ui.InfoPopUpWindow;
  *
  * @author Connor
  */
-public class CountUsersVisitor implements Visitor{
+public class CountUsersVisitor implements GroupVisitor{
     
     public CountUsersVisitor(){
         
     }
 
     @Override
-    public void visitRoot(RootComposite root) {
+    public void visitRoot(GroupComposite root) {
         int numUsers = countUserDescendents(root);
         
         new InfoPopUpWindow("Total Number of Users: " + numUsers);

@@ -5,21 +5,21 @@
  */
 package cs356minitwitter.nodes;
 
-import analysis.TwitterElement;
-import analysis.Visitor;
+import analysis.GroupElement;
+import analysis.GroupVisitor;
 
 /**
  *
  * @author Connor
  */
-public class RootComposite extends GroupComposite implements TwitterElement{
+public class RootComposite extends GroupComposite implements GroupElement{
     
     public RootComposite(String id) {
         super(id);
     }
 
     @Override
-    public void accept(Visitor v) {
+    public void accept(GroupVisitor v) {
         v.visitRoot(this);
     }
 }

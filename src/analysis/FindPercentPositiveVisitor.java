@@ -5,21 +5,25 @@
  */
 package analysis;
 
-import cs356minitwitter.nodes.RootComposite;
+import cs356minitwitter.nodes.GroupComposite;
 import cs356minitwitter.ui.InfoPopUpWindow;
+import cs356minitwitter.util.TwitterUserHMap;
+import java.util.HashMap;
 
 /**
  *
  * @author Connor
  */
-public class FindPercentPositiveVisitor implements Visitor{
+public class FindPercentPositiveVisitor implements HashMapVisitor{
     
     public FindPercentPositiveVisitor(){
         
     }
 
     @Override
-    public void visitRoot(RootComposite root) {
-        new InfoPopUpWindow("<html><div style='text-align: center;'>" + "Find Percent Positive" + "</div></html>");
+    public void visitHashMap(HashMap hMap) {
+        if(hMap instanceof TwitterUserHMap) {
+            new InfoPopUpWindow("Percent Positive");
+        }
     }
 }

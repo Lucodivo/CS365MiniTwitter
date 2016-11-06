@@ -5,12 +5,12 @@
  */
 package analysis;
 
-import cs356minitwitter.nodes.RootComposite;
+import cs356minitwitter.nodes.GroupComposite;
 
 /**
  *
  * @author Connor
  */
-public interface Visitor {
-    public void visitRoot(RootComposite root);
+public interface GroupVisitor {
+    public void visitRoot(GroupComposite root);
 }
