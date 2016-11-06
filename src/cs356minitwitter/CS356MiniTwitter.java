@@ -5,8 +5,8 @@
  */
 package cs356minitwitter;
 
-import cs356minitwitter.MiniTwitterUI.AdminWindow;
-import cs356minitwitter.twitterUser.TwitterUser;
+import cs356minitwitter.ui.AdminWindow;
+import cs356minitwitter.user.TwitterUser;
 
 /**
  *

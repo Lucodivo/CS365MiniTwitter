@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.twitterUser;
+package cs356minitwitter.user;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,10 @@ import java.util.ArrayList;
  */
 public class Subject {
     private ArrayList<Observer> observers;
+    
+    public Subject(){
+        observers = new ArrayList<Observer>();
+    }
     
     public void attach(Observer observer) {
         observers.add(observer);

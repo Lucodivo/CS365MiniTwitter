@@ -14,7 +14,15 @@ import javax.swing.AbstractListModel;
  */
 public class StringArrayListModel extends AbstractListModel<String> {
 
-    ArrayList<String> strings = new ArrayList<String>();
+    ArrayList<String> strings;
+    
+    public StringArrayListModel() {
+        strings = new ArrayList<String>();
+    }
+    
+    public StringArrayListModel(ArrayList<String> strings) {
+        this.strings = strings;
+    }
 
     public void addString(String s) {
         strings.add(s);

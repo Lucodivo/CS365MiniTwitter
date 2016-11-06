@@ -1,4 +1,4 @@
-package cs356minitwitter.MiniTwitterUI;
+package cs356minitwitter.ui;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

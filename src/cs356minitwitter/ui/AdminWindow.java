@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.MiniTwitterUI;
+package cs356minitwitter.ui;
 
+import cs356minitwitter.user.TwitterUser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -20,14 +21,14 @@ import javax.swing.tree.DefaultTreeModel;
 public class AdminWindow extends AdminUI {
     
     private static AdminWindow adminWindow;
-    private HashMap<String, UserWindow> userWindows;
+    private HashMap<String, TwitterUser> twitterUsers;
     private DefaultMutableTreeNode root;
     private HashMap<String, DefaultMutableTreeNode> nodes;
     
     private AdminWindow() {
         super();
         
-        userWindows = new HashMap<String, UserWindow>();
+        twitterUsers = new HashMap<String, TwitterUser>();
         nodes = new HashMap<String, DefaultMutableTreeNode>();
         root = (DefaultMutableTreeNode) this.userGroupTreePane.getModel().getRoot();
         nodes.put("root", root);
@@ -75,12 +76,11 @@ public class AdminWindow extends AdminUI {
         DefaultMutableTreeNode node = 
                 (DefaultMutableTreeNode) this.userGroupTreePane.getLastSelectedPathComponent();
         if(node != null && !node.getAllowsChildren()){
-            String userFullPath = this.userGroupTreePane.getSelectionPath().toString();
-            if(userWindows.containsKey(userFullPath)){
-                userWindows.get(userFullPath).setVisible(true);
+            String userName = node.toString();
+            if(twitterUsers.containsKey(userName)){
+                new UserWindow(twitterUsers.get(userName));
             } else {
-                String selectedUserName = node.toString();
-                userWindows.put(userFullPath, new UserWindow(selectedUserName));
+                new UserWindow(twitterUsers.get(userName));
             }
         }
     }
@@ -120,15 +120,26 @@ public class AdminWindow extends AdminUI {
             DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(newNodeObject);
             newNode.setAllowsChildren(isGroup);
             groupNode.add(newNode);
-            nodes.put(newNodeObject.toString(), newNode);
+            String userName = newNodeObject.toString();
+            nodes.put(userName, newNode);
+            twitterUsers.put(userName, new TwitterUser(userName));
             // newNode.getUserObject();
-            
-            // updating the tree. Calling updateUI alone may cause NullPointerException.
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    userGroupTreePane.updateUI();
-                }
-            });
+            this.updateGroupTreePaneUI();
         }
+    }
+    
+    private void updateGroupTreePaneUI(){
+            
+        // updating the tree. Calling updateUI alone may cause NullPointerException.
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                userGroupTreePane.updateUI();
+            }
+        });
+    }
+    
+    // getters
+    public TwitterUser getTwitterUser(String userID) {
+        return twitterUsers.get(userID);
     }
 }

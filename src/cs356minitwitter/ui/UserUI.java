@@ -1,4 +1,4 @@
-package cs356minitwitter.MiniTwitterUI;
+package cs356minitwitter.ui;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +38,8 @@ public class UserUI extends javax.swing.JFrame {
         newsFeedListView = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         currentFollowingListView = new javax.swing.JList<>();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
