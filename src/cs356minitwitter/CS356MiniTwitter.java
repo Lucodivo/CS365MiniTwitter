@@ -29,9 +29,11 @@ public class CS356MiniTwitter {
         UserLeaf ethan = new UserLeaf("Ethan");
         adminWindow.getTwitterUser("Ethan");
         UserLeaf edith = new UserLeaf("Edith");
+        GroupComposite testGroup = new GroupComposite("???");
         UserLeaf notAlice = new UserLeaf("Not Alice");
         adminWindow.addLeafNode(ethan, "Crystal Castles");
         adminWindow.addLeafNode(edith, "Crystal Castles");
+        adminWindow.addGroupNode(testGroup, "Crystal Castles");
         adminWindow.addLeafNode(notAlice, "Crystal Castles");
         
         GroupComposite futureIslands = new GroupComposite("Future Islands");

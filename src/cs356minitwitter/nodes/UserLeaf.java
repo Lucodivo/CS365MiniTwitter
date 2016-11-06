@@ -36,4 +36,9 @@ public class UserLeaf extends UserGroupComponent {
     public List<UserGroupComponent> getChildren() {
         return null;
     }
+
+    @Override
+    public int getNumChildren() {
+        return 0;
+    }
 }

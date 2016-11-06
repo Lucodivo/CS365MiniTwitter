@@ -5,7 +5,10 @@
  */
 package cs356minitwitter.ui;
 
+import analysis.CountGroupsVisitor;
+import analysis.CountTweetsVisitor;
 import analysis.CountUsersVisitor;
+import analysis.FindPercentPositiveVisitor;
 import cs356minitwitter.nodes.GroupComposite;
 import cs356minitwitter.nodes.RootComposite;
 import cs356minitwitter.nodes.UserGroupComponent;
@@ -28,11 +31,17 @@ public class AdminWindow extends AdminUI {
     private HashMap<String, UserGroupComponent> nodes;
     
     private CountUsersVisitor countUsersVisitor;
+    private CountGroupsVisitor countGroupsVisitor;
+    private CountTweetsVisitor countTweetsVisitor;
+    private FindPercentPositiveVisitor findPercentPositiveVisitor;
     
     private AdminWindow() {
         super();
         
         countUsersVisitor = new CountUsersVisitor();
+        countGroupsVisitor = new CountGroupsVisitor();
+        countTweetsVisitor = new CountTweetsVisitor();
+        findPercentPositiveVisitor = new FindPercentPositiveVisitor();
         
         twitterUsers = new HashMap<String, TwitterUser>();
         root = (RootComposite) this.userGroupTreePane.getModel().getRoot();
@@ -92,21 +101,21 @@ public class AdminWindow extends AdminUI {
         this.showGroupTotalButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                
+                ((RootComposite)root).accept(countGroupsVisitor);
             }
         });
         
         this.showMessagesTotalButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                
+                ((RootComposite)root).accept(countTweetsVisitor);
             }
         });
         
         this.showPositivePercentageButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                
+                ((RootComposite)root).accept(findPercentPositiveVisitor);
             }
         });
     }

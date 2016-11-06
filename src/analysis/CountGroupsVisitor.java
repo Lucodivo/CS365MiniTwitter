@@ -8,36 +8,34 @@ package analysis;
 import cs356minitwitter.nodes.GroupComposite;
 import cs356minitwitter.nodes.RootComposite;
 import cs356minitwitter.nodes.UserGroupComponent;
-import cs356minitwitter.nodes.UserLeaf;
 import cs356minitwitter.ui.InfoPopUpWindow;
 
 /**
  *
  * @author Connor
  */
-public class CountUsersVisitor implements Visitor{
+public class CountGroupsVisitor implements Visitor{
     
-    public CountUsersVisitor(){
+    public CountGroupsVisitor(){
         
     }
 
     @Override
     public void visitRoot(RootComposite root) {
-        int numUsers = countUserDescendents(root);
+        int numGroups = countGroupDescendents(root);
         
-        new InfoPopUpWindow("Total Number of Users: " + numUsers);
+        new InfoPopUpWindow("Total Number of Groups: " + numGroups);
     }
     
-    public int countUserDescendents(GroupComposite root){
-        int numUserLeaves = 0;
+    public int countGroupDescendents(GroupComposite root){
+        int numGroupDescendents = 0;
         for(int i = 0; i < root.getNumChildren(); i++) {
             UserGroupComponent currentChild = root.getChild(i);
             if(currentChild instanceof GroupComposite){
-                numUserLeaves += countUserDescendents((GroupComposite)currentChild);
-            } else {
-                numUserLeaves++;
+                numGroupDescendents++;
+                numGroupDescendents += countGroupDescendents((GroupComposite)currentChild);
             }
         }
-        return numUserLeaves;
+        return numGroupDescendents;
     }
 }

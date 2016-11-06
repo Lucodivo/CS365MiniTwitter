@@ -44,4 +44,9 @@ public class GroupComposite extends UserGroupComponent {
     public List<UserGroupComponent> getChildren() {
         return this.components;
     }
+
+    @Override
+    public int getNumChildren() {
+        return this.components.size();
+    }
 }

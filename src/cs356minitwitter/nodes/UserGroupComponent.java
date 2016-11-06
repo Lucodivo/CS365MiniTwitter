@@ -25,11 +25,12 @@ public abstract class UserGroupComponent {
 
     @Override
     public String toString() {
-        return (this.componentID);
+        return this.componentID;
     }
     
     public abstract void add(UserGroupComponent c);
     public abstract void remove(UserGroupComponent c);
     public abstract UserGroupComponent getChild(int i);
     public abstract List<UserGroupComponent> getChildren();
+    public abstract int getNumChildren();
 }
