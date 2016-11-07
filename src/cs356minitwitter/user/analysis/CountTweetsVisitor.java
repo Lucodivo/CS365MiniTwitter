@@ -1,43 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs356minitwitter.user.analysis;
 
-import cs356minitwitter.InfoPopUpWindow;
 import cs356minitwitter.user.TwitterUser;
 import cs356minitwitter.user.analysis.util.TwitterUserHashMap;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
+ * Visitor that counts the total number of Tweets in a TwitterUserHashMap
  *
  * @author Connor
  */
-public class CountTweetsVisitor implements HashMapVisitor{
+public class CountTweetsVisitor implements TwittorUserHashMapVisitor{
     
+    /**
+     * Constructor
+     */
     public CountTweetsVisitor(){
-        
     }
 
+    /**
+     * Returns the number of tweets in the TwitterUserHashmap
+     * @param twitterUsers
+     * @return 
+     */
     @Override
-    public void visitHashMap(HashMap hMap) {
-        if(hMap instanceof TwitterUserHashMap) {
-            int numTweets = countTweets((TwitterUserHashMap)hMap);
-            
-            new InfoPopUpWindow("Total Tweets: " + numTweets);
-        }
-    }
-    
-    public int countTweets(TwitterUserHashMap twitterUsers){
+    public int visitHashMap(TwitterUserHashMap twitterUsers) {
         int numTweets = 0;
-        Iterator it = twitterUsers.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
+        // use an Iterator to go through each pair in the HashMap
+        for (Map.Entry pair : twitterUsers.entrySet()) {
+            // get the TwitterUser from the value of the current pair
             TwitterUser currentUser = (TwitterUser)pair.getValue();
+            // add current user's tweets to total count number
             numTweets += currentUser.getTweets().size();
         }
         return numTweets;

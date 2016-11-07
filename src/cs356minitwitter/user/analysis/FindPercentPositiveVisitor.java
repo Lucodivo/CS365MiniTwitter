@@ -1,83 +1,89 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs356minitwitter.user.analysis;
 
-import cs356minitwitter.InfoPopUpWindow;
 import cs356minitwitter.user.Tweet;
 import cs356minitwitter.user.TwitterUser;
 import cs356minitwitter.user.analysis.util.TwitterUserHashMap;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
+ * Visitor that processes all tweets from TwuitterUserHashMap and outputs the 
+ * percentage of tweets that contain positive words from GoodWordDictionary
  *
  * @author Connor
  */
-public class FindPercentPositiveVisitor implements HashMapVisitor{
+public class FindPercentPositiveVisitor implements TwittorUserHashMapVisitor{
     
-    private int numTweets;
-    private int numPositiveTweets;
-    private static GoodWordDictionary gwDict;
+    // Reference to GoodWordDictionary singleton
+    private GoodWordDictionary gwDict;
     
+    /**
+     * Constructor
+     * sets Reference to GoodWordDictionary singleton
+     */
     public FindPercentPositiveVisitor(){
         gwDict = GoodWordDictionary.getDictionary();
     }
 
+    /**
+     * Returns the percentage of positive Tweets from all TwitterUsers in
+     * a TwitterUserHashMap. Positive tweets are dictated by the GoodWordDictionary
+     * class.
+     * @param twitterUsers
+     * @return percentage of positive Tweets, returns integers in range [0%,100%]
+     */
     @Override
-    public void visitHashMap(HashMap hMap) {
-        this.numTweets = 0;
-        this.numPositiveTweets = 0;
-        if(hMap instanceof TwitterUserHashMap) {
-            setPercentPositive((TwitterUserHashMap)hMap);
-            double percent;
-            if(numTweets > 0){
-                percent = ((double)this.numPositiveTweets/(double)this.numTweets) * 100;
-                percent = this.truncate(percent,2);
-            } else {
-                percent = 0.00;
-            }
-            new InfoPopUpWindow("Percent Positive Tweets: " + percent + "%");
-        }
-    }
-    
-    public void setPercentPositive(TwitterUserHashMap twitterUsers){
-        int dictSize = this.gwDict.getSize();
-        Iterator it = twitterUsers.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry pair = (Map.Entry)it.next();
+    public int visitHashMap(TwitterUserHashMap twitterUsers) {
+        // number of tweets
+        int numTweets = 0;
+        // number of positive tweets
+        int numPositiveTweets = 0;
+        
+        // number of words in the dictionary
+        int dictSize = gwDict.getSize();
+        
+        // For every pair in TwitterUserHashMap
+        for (Map.Entry pair : twitterUsers.entrySet()) {
+            // get user from pair
             TwitterUser currentUser = (TwitterUser)pair.getValue();
+            // get tweets from user
             ArrayList<Tweet> tweets = currentUser.getTweets();
-            int numTweets = tweets.size();
-            this.numTweets += numTweets;
-            for(int i = 0; i < numTweets; i++){
+            // update number of tweets recorded
+            int iNumTweets = tweets.size();
+            numTweets += iNumTweets;
+            // For every tweet from current user
+            for(int i = 0; i < iNumTweets; i++){
                 String tweetContent = tweets.get(i).getTweetString();
+                // for every word in the dictionary
                 for(int j = 0; j < dictSize; j++){
-                    boolean isPositive = Pattern.compile(Pattern.quote(tweetContent),
-                            Pattern.CASE_INSENSITIVE).matcher(gwDict.get(j)).find();
-                    if(isPositive){
-                        this.numPositiveTweets++;
+                    // if tweet has a good word, increment pos tweets count
+                    String word = gwDict.get(j);
+                    // case insensitive function to see if tweet contains substring
+                    // found on StackOverflow
+                    // http://stackoverflow.com/questions/86780/how-to-check-if-a-string-contains-another-string-in-a-case-insensitive-manner-in
+                    if(Pattern.compile(Pattern.quote(word),
+                            Pattern.CASE_INSENSITIVE).matcher(tweetContent).find()){
+                        // once a tweet is positive, it is counted only once
+                        numPositiveTweets++;
                         break;
                     }
                 }
             }
         }
-    }
-    
-    private double truncate(double num, int precision){
-       int multiplier = 1;
-       for(int i = 0; i < precision; i++){
-           multiplier *= 10;
-       }
-       num *= multiplier;
-       num = (int)num;
-       num /= multiplier;
-       return num;
+        
+        // Get the percentage value using the number of positive tweets and 
+        // the total number of tweets
+        double percent;
+        if(numTweets > 0){
+            percent = ((double)numPositiveTweets/(double)numTweets) * 100;
+        } else {
+            percent = 0.0;
+        }
+        
+        // truncate, cast, and return percent as int
+        return (int)percent;
     }
 }

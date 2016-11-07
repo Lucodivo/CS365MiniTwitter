@@ -6,3 +6,5 @@ dist/
 nbproject/
 
 manifest.mf
+
+.idea/

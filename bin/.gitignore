@@ -1,0 +1,5 @@
+# To simplify the installation process by already creating a bin dir
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore

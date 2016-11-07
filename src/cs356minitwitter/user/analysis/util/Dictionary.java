@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs356minitwitter.user.analysis.util;
 
 /**
+ * Interface for a dictionary. Sets framework to return number of words
+ * and the ability to iterate through all words
  *
  * @author Connor
  */

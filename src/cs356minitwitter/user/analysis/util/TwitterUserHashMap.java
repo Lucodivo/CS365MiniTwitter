@@ -1,24 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs356minitwitter.user.analysis.util;
 
 import cs356minitwitter.user.TwitterUser;
-import cs356minitwitter.user.analysis.HashMapElement;
-import cs356minitwitter.user.analysis.HashMapVisitor;
 
 import java.util.HashMap;
+import cs356minitwitter.user.analysis.TwittorUserHashMapVisitor;
+import cs356minitwitter.user.analysis.TwitterUserHashMapElement;
 
 /**
+ * HashMap to user TwitterUserID's as hash input to get the corresponding TwitterUser.
+ * Also implements HashMapElement to provide visitors a self Reference
  *
  * @author Connor
  */
-public class TwitterUserHashMap extends HashMap<String, TwitterUser> implements HashMapElement {
+public class TwitterUserHashMap extends HashMap<String, TwitterUser> implements TwitterUserHashMapElement {
 
+    /**
+     * return a visitors return value
+     * @param v
+     * @return 
+     */
     @Override
-    public void accept(HashMapVisitor v) {
-        v.visitHashMap(this);
+    public int accept(TwittorUserHashMapVisitor v) {
+        return v.visitHashMap(this);
     }
 }

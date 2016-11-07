@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package cs356minitwitter.nodes.analysis;
+package cs356minitwitter.node.analysis;
 
-import cs356minitwitter.nodes.GroupComposite;
+import cs356minitwitter.node.GroupComposite;
 
 /**
+ * Interface for visitor that want to visit a GroupComposite and return an integer
  *
  * @author Connor
  */
