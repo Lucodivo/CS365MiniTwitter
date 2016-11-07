@@ -54,14 +54,16 @@ public class UserWindow extends UserUI implements Observer {
         this.followUserButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                followUser();
+                followUser(followUserIDTextArea.getText());
+                followUserIDTextArea.setText("");
             }
         });
         
         this.postTweetButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                postTweet();
+                postTweet(tweetMessageTextArea.getText());
+                tweetMessageTextArea.setText("");
             }
         });
         
@@ -73,8 +75,7 @@ public class UserWindow extends UserUI implements Observer {
         });
     }
     
-    private void followUser() {
-        String followUserID = this.followUserIDTextArea.getText();
+    private void followUser(String followUserID) {
         if(!followUserID.isEmpty()){
             TwitterUser followUser = adminWindow.getTwitterUser(followUserID);
             if (followUser != null && followUser != this.user 
@@ -87,8 +88,7 @@ public class UserWindow extends UserUI implements Observer {
         }
     }
     
-    private void postTweet() {
-        String newTweetString = this.tweetMessageTextArea.getText();
+    private void postTweet(String newTweetString) {
         if(!newTweetString.isEmpty()){
             user.postTweet(newTweetString);
             updateJListUI(this.newsFeedListView);

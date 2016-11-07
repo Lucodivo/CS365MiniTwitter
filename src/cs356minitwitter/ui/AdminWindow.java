@@ -82,6 +82,7 @@ public class AdminWindow extends AdminUI {
             @Override      
             public void actionPerformed(ActionEvent e) {
                 addLeafToSelectedNode(userIDTextArea.getText());
+                userIDTextArea.setText("");
             }
         });
         
@@ -89,6 +90,7 @@ public class AdminWindow extends AdminUI {
             @Override      
             public void actionPerformed(ActionEvent e) {
                 addGroupToSelectedNode(groupIDTextArea.getText());
+                groupIDTextArea.setText("");
             }
         });
         
