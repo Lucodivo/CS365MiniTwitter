@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analysis;
+package cs356minitwitter.nodes.analysis;
 
-import java.util.HashMap;
+import cs356minitwitter.nodes.GroupComposite;
 
 /**
  *
  * @author Connor
  */
-public interface HashMapVisitor {
-    public void visitHashMap(HashMap hMap);
+public interface GroupVisitor {
+    public int visitRoot(GroupComposite root);
 }

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analysis;
+package cs356minitwitter.user.analysis;
 
-import cs356minitwitter.nodes.GroupComposite;
-import cs356minitwitter.nodes.RootComposite;
-import cs356minitwitter.nodes.UserGroupComponent;
-import cs356minitwitter.ui.InfoPopUpWindow;
+import cs356minitwitter.InfoPopUpWindow;
 import cs356minitwitter.user.TwitterUser;
-import cs356minitwitter.util.TwitterUserHMap;
+import cs356minitwitter.user.analysis.util.TwitterUserHashMap;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -27,14 +25,14 @@ public class CountTweetsVisitor implements HashMapVisitor{
 
     @Override
     public void visitHashMap(HashMap hMap) {
-        if(hMap instanceof TwitterUserHMap) {
-            int numTweets = countTweets((TwitterUserHMap)hMap);
+        if(hMap instanceof TwitterUserHashMap) {
+            int numTweets = countTweets((TwitterUserHashMap)hMap);
             
             new InfoPopUpWindow("Total Tweets: " + numTweets);
         }
     }
     
-    public int countTweets(TwitterUserHMap twitterUsers){
+    public int countTweets(TwitterUserHashMap twitterUsers){
         int numTweets = 0;
         Iterator it = twitterUsers.entrySet().iterator();
         while(it.hasNext()){

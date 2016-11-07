@@ -5,6 +5,7 @@
  */
 package cs356minitwitter.user;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @author Connor
  */
 public class Subject {
-    private ArrayList<Observer> observers;
+    private List<Observer> observers;
     
     public Subject(){
         observers = new ArrayList<Observer>();

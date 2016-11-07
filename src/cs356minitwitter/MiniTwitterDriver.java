@@ -7,13 +7,12 @@ package cs356minitwitter;
 
 import cs356minitwitter.nodes.GroupComposite;
 import cs356minitwitter.nodes.UserLeaf;
-import cs356minitwitter.ui.AdminWindow;
 
 /**
  *
  * @author Connor
  */
-public class CS356MiniTwitter {
+public class MiniTwitterDriver {
 
     /**
      * @param args the command line arguments

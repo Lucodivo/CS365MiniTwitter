@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.ui;
+package cs356minitwitter;
 
 import cs356minitwitter.user.Observer;
 import cs356minitwitter.user.Subject;
-import cs356minitwitter.user.Tweet;
 import cs356minitwitter.user.TwitterUser;
-import cs356minitwitter.util.StringArrayListModel;
+
+import cs356minitwitter.forms.UserUI;
+import cs356minitwitter.models.StringArrayListModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
-import java.util.Date;
 import javax.swing.JList;
 import javax.swing.SwingUtilities;
 

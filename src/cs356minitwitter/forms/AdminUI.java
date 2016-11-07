@@ -1,20 +1,18 @@
-package cs356minitwitter.ui;
-
-import cs356minitwitter.nodes.GroupComposite;
-import cs356minitwitter.nodes.RootComposite;
-import cs356minitwitter.util.UserGroupTreeModel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package cs356minitwitter.forms;
+
+import cs356minitwitter.nodes.RootComposite;
+import cs356minitwitter.models.UserGroupTreeModel;
 
 /**
  *
  * @author Connor
  */
-public class AdminUI extends javax.swing.JFrame {
+public abstract class AdminUI extends javax.swing.JFrame {
     
     private static AdminUI aUI;
 

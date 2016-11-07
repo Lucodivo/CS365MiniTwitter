@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analysis;
+package cs356minitwitter.nodes.analysis;
 
 import cs356minitwitter.nodes.GroupComposite;
-import cs356minitwitter.nodes.RootComposite;
 import cs356minitwitter.nodes.UserGroupComponent;
-import cs356minitwitter.ui.InfoPopUpWindow;
 
 /**
  *
@@ -21,10 +19,8 @@ public class CountGroupsVisitor implements GroupVisitor{
     }
 
     @Override
-    public void visitRoot(GroupComposite root) {
-        int numGroups = countGroupDescendents(root);
-        
-        new InfoPopUpWindow("Total Number of Groups: " + numGroups);
+    public int visitRoot(GroupComposite root) {
+        return countGroupDescendents(root);
     }
     
     public int countGroupDescendents(GroupComposite root){

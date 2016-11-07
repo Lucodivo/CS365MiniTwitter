@@ -5,8 +5,8 @@
  */
 package cs356minitwitter.nodes;
 
-import analysis.GroupElement;
-import analysis.GroupVisitor;
+import cs356minitwitter.nodes.analysis.GroupElement;
+import cs356minitwitter.nodes.analysis.GroupVisitor;
 
 /**
  *
@@ -19,7 +19,7 @@ public class RootComposite extends GroupComposite implements GroupElement{
     }
 
     @Override
-    public void accept(GroupVisitor v) {
-        v.visitRoot(this);
+    public int accept(GroupVisitor v) {
+        return v.visitRoot(this);
     }
 }

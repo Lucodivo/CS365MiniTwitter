@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.util;
+package cs356minitwitter.user.analysis.util;
 
-import analysis.HashMapElement;
-import analysis.HashMapVisitor;
 import cs356minitwitter.user.TwitterUser;
+import cs356minitwitter.user.analysis.HashMapElement;
+import cs356minitwitter.user.analysis.HashMapVisitor;
+
 import java.util.HashMap;
 
 /**
  *
  * @author Connor
  */
-public class TwitterUserHMap extends HashMap<String, TwitterUser> implements HashMapElement {
+public class TwitterUserHashMap extends HashMap<String, TwitterUser> implements HashMapElement {
 
     @Override
     public void accept(HashMapVisitor v) {

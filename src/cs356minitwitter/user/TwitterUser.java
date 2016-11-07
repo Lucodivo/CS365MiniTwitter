@@ -5,9 +5,7 @@
  */
 package cs356minitwitter.user;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 
 /**

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analysis;
+package cs356minitwitter.user.analysis;
+
+import cs356minitwitter.user.analysis.util.Dictionary;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,11 @@ public class GoodWordDictionary extends ArrayList<String> implements Dictionary 
             goodWords.add("great");
             goodWords.add("excellent");
             goodWords.add("cool");
+            goodWords.add("sweet");
+            goodWords.add("beautiful");
+            goodWords.add("cute");
+            goodWords.add("pretty");
+            goodWords.add(":)");
             return new GoodWordDictionary(goodWords);
         }
         return dwDict;

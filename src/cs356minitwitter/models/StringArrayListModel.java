@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.util;
+package cs356minitwitter.models;
 
-import cs356minitwitter.user.Tweet;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.swing.AbstractListModel;

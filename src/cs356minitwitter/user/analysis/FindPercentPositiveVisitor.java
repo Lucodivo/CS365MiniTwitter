@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analysis;
+package cs356minitwitter.user.analysis;
 
-import cs356minitwitter.ui.InfoPopUpWindow;
+import cs356minitwitter.InfoPopUpWindow;
 import cs356minitwitter.user.Tweet;
 import cs356minitwitter.user.TwitterUser;
-import cs356minitwitter.util.TwitterUserHMap;
+import cs356minitwitter.user.analysis.util.TwitterUserHashMap;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,8 +34,8 @@ public class FindPercentPositiveVisitor implements HashMapVisitor{
     public void visitHashMap(HashMap hMap) {
         this.numTweets = 0;
         this.numPositiveTweets = 0;
-        if(hMap instanceof TwitterUserHMap) {
-            setPercentPositive((TwitterUserHMap)hMap);
+        if(hMap instanceof TwitterUserHashMap) {
+            setPercentPositive((TwitterUserHashMap)hMap);
             double percent;
             if(numTweets > 0){
                 percent = ((double)this.numPositiveTweets/(double)this.numTweets) * 100;
@@ -46,7 +47,7 @@ public class FindPercentPositiveVisitor implements HashMapVisitor{
         }
     }
     
-    public void setPercentPositive(TwitterUserHMap twitterUsers){
+    public void setPercentPositive(TwitterUserHashMap twitterUsers){
         int dictSize = this.gwDict.getSize();
         Iterator it = twitterUsers.entrySet().iterator();
         while(it.hasNext()){

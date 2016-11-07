@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analysis;
+package cs356minitwitter.nodes.analysis;
 
 /**
  *
  * @author Connor
  */
 public interface GroupElement {
-    public void accept(GroupVisitor v);
+    public int accept(GroupVisitor v);
 }

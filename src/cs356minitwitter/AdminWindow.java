@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.ui;
+package cs356minitwitter;
 
-import analysis.CountGroupsVisitor;
-import analysis.CountTweetsVisitor;
-import analysis.CountUsersVisitor;
-import analysis.FindPercentPositiveVisitor;
+import cs356minitwitter.forms.AdminUI;
+
+import cs356minitwitter.user.TwitterUser;
+import cs356minitwitter.user.analysis.CountTweetsVisitor;
+import cs356minitwitter.user.analysis.FindPercentPositiveVisitor;
+import cs356minitwitter.user.analysis.util.TwitterUserHashMap;
+
 import cs356minitwitter.nodes.GroupComposite;
 import cs356minitwitter.nodes.RootComposite;
 import cs356minitwitter.nodes.UserGroupComponent;
 import cs356minitwitter.nodes.UserLeaf;
-import cs356minitwitter.user.TwitterUser;
-import cs356minitwitter.util.TwitterUserHMap;
+import cs356minitwitter.nodes.analysis.CountGroupsVisitor;
+import cs356minitwitter.nodes.analysis.CountUsersVisitor;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -27,7 +31,7 @@ import javax.swing.SwingUtilities;
 public class AdminWindow extends AdminUI {
     
     private static AdminWindow adminWindow;
-    private TwitterUserHMap twitterUsers;
+    private TwitterUserHashMap twitterUsers;
     private UserGroupComponent root;
     private HashMap<String, UserGroupComponent> nodes;
     
@@ -44,7 +48,7 @@ public class AdminWindow extends AdminUI {
         countTweetsVisitor = new CountTweetsVisitor();
         findPercentPositiveVisitor = new FindPercentPositiveVisitor();
         
-        twitterUsers = new TwitterUserHMap();
+        twitterUsers = new TwitterUserHashMap();
         root = (RootComposite) this.userGroupTreePane.getModel().getRoot();
         nodes = new HashMap<String, UserGroupComponent>();
         nodes.put("root", root);
@@ -97,14 +101,16 @@ public class AdminWindow extends AdminUI {
         this.showUserTotalButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                ((RootComposite)root).accept(countUsersVisitor);
+                int numUsers = ((RootComposite)root).accept(countUsersVisitor);
+                new InfoPopUpWindow("Total Number of Users: " + numUsers);
             }
         });
         
         this.showGroupTotalButton.addActionListener(new ActionListener() {  
             @Override      
             public void actionPerformed(ActionEvent e) {
-                ((RootComposite)root).accept(countGroupsVisitor);
+                int numGroups = ((RootComposite)root).accept(countGroupsVisitor);
+                new InfoPopUpWindow("Total Number of Groups: " + numGroups);
             }
         });
         

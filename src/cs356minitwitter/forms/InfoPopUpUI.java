@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs356minitwitter.ui;
+package cs356minitwitter.forms;
 
 /**
  *
  * @author Connor
  */
-public class InfoPopUpUI extends javax.swing.JFrame {
+public abstract class InfoPopUpUI extends javax.swing.JFrame {
 
     /**
      * Creates new form InfoPopUp
@@ -31,7 +31,6 @@ public class InfoPopUpUI extends javax.swing.JFrame {
         infoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(220, 160));
 
         okButton.setText("OK");
 

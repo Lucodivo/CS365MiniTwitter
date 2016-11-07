@@ -1,16 +1,16 @@
-package cs356minitwitter.ui;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+package cs356minitwitter.forms;
+
 /**
  *
  * @author Connor
  */
-public class UserUI extends javax.swing.JFrame {
+public abstract class UserUI extends javax.swing.JFrame {
 
     /**
      * Creates new form UserUI
